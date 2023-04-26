@@ -3,39 +3,33 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        Expendedor exp = new Expendedor(4,500);
+        Expendedor exp = new Expendedor(2,500,200);
         Moneda m = null;
         Comprador c=null;
-        m = new Moneda1000();
-        c = new Comprador(m,Expendedor.COCA,exp);
-        System.out.println(c.queBebiste()+", "+c.cuantoVuelto());
-        m = new Moneda1000();
-        c = new Comprador(m,Expendedor.COCA,exp);
-        System.out.println(c.queBebiste()+", "+c.cuantoVuelto());
         m = new Moneda500();
+        c = new Comprador(m,600,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        /*m = new Moneda1000();
+        c = new Comprador(m,Expendedor.SPRITE,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda1000();
+        c = new Comprador(m,Expendedor.SPRITE,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda1000();
+        c = new Comprador(m,Expendedor.SPRITE,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda1000();
         c = new Comprador(m,Expendedor.COCA,exp);
-        System.out.println(c.queBebiste()+", "+c.cuantoVuelto());
-        m = new Moneda1000();
-        c = new Comprador(m,Expendedor.SPRITE,exp);
-        System.out.println(c.queBebiste()+", "+c.cuantoVuelto());
-        m = new Moneda1000();
-        c = new Comprador(m,Expendedor.SPRITE,exp);
-        System.out.println(c.queBebiste()+", "+c.cuantoVuelto());
-        m = new Moneda1000();
-        c = new Comprador(m,Expendedor.SPRITE,exp);
-        System.out.println(c.queBebiste()+", "+c.cuantoVuelto());
-        m = new Moneda1000();
-        c = new Comprador(m,Expendedor.COCA,exp);
-        System.out.println(c.queBebiste()+", "+c.cuantoVuelto());
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
         m = new Moneda500();
         c = new Comprador(m,Expendedor.SPRITE,exp);
-        System.out.println(c.queBebiste()+", "+c.cuantoVuelto());
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
         m = new Moneda1000();
         c = new Comprador(m,Expendedor.COCA,exp);
-        System.out.println(c.queBebiste()+", "+c.cuantoVuelto());
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
         m = new Moneda1000();
         c = new Comprador(m,Expendedor.COCA,exp);
-        System.out.println(c.queBebiste()+", "+c.cuantoVuelto());
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());*/
     }
 }
 
@@ -56,51 +50,71 @@ class Expendedor {
     private Deposito monVu;
     private Deposito monVu100;
 
+    private Deposito super8;
+
+    private Deposito snickers;
+
+    private int precioBebidas,precioDulces,num;
+    private int n1 = 1, n2 = 11, n3=111, n4=1111;
+
+    private int aux,cual,j=0,j2=0,j3=0,j4=0;
     public static final int COCA = 1;
     public static final int SPRITE = 2;
 
-    public int precioBebidas,num;
-    int n1 = 1, n2 = 11;
+    public static final int SUPER8=3;
 
-    int aux,cual,j=0,j2=0;
-    public Expendedor(int numBebidas, int precioBebidas) {
+    public static final int SNICKERS=4;
+
+    public Expendedor(int num, int precioBebidas,int precioDulces) {
         coca = new Deposito();
         sprite = new Deposito();
         monVu100 = new Deposito();
         monVu = new Deposito();
-        this.precioBebidas = precioBebidas;
-        num=numBebidas;
+        snickers= new Deposito();
+        super8= new Deposito();
 
-        for (int i = 0; i < numBebidas; i++) {
+        this.precioBebidas= precioBebidas;
+        this.precioDulces=precioDulces;
+        this.num=num;
+
+        for (int i = 0; i < num; i++) {
             sprite.addBebida(new Sprite(n2));
             n2++;
         }
-        for (int i = 0; i < numBebidas; i++) {
+        for (int i = 0; i < num; i++) {
             coca.addBebida(new CocaCola(n1));
             n1++;
         }
 
-       for (int i = 0; i < 1000; i++) {
-           monVu100.addMoneda(new Moneda100());
-       }
+        for (int i = 0; i < num; i++) {
+            super8.addDulce(new Super8(n3));
+            n3++;
+        }
+
+        for (int i = 0; i < num; i++) {
+            snickers.addDulce(new Snickers(n4));
+            n4++;
+        }
+
+        for (int i = 0; i < 1000; i++) {
+            monVu100.addMoneda(new Moneda100());
+        }
     }
 
     public Bebida comprarBebida(Moneda m, int cual) {
         this.cual=cual;
-        if(m!=null) {
+        if(m!=null ) {
             aux = m.getValor() - precioBebidas;
             monVu.addFirstMoneda(m);
-            B=m;
+            B = m;
 
-            if (cual == COCA && coca != null && aux>=0){// && k!=num && aux>0) {
-                j++;
-                return coca.getBebida();
-            }
-            else if(cual == SPRITE && sprite != null && aux>=0){ //&& k!=num && aux>0){
+            if (cual == COCA && coca != null && aux >= 0) {// && k!=num && aux>0) {
+               j++;
+               return coca.getBebida();
+            } else if (cual == SPRITE && sprite != null && aux >= 0) { //&& k!=num && aux>0){
                 j2++;
                 return sprite.getBebida();
-            }
-            else{
+            } else {
                 return null;
             }
         }
@@ -109,8 +123,31 @@ class Expendedor {
             return null;
         }
     }
-    public Moneda getVuelto() {
-        if(monVu!=null && B!=null) {
+
+        public Dulce comprarDulce(Moneda m, int cualdulce) {
+            this.cual = cualdulce;
+            if (m != null) {
+                aux = m.getValor() - precioDulces;
+                monVu.addFirstMoneda(m);
+                B = m;
+
+                if (cual == SNICKERS && snickers != null && aux >= 0) {
+                    j3++;
+                    return snickers.getDulce();
+                } else if (cual == SUPER8 && super8 != null && aux >= 0) {
+                    j4++;
+                    return super8.getDulce();
+                } else {
+                    return null;
+                }
+            }
+            else{
+                return null;
+            }
+        }
+
+    public Moneda getVuelto(){
+        if(monVu!=null ) {
             if (aux > 0 && cual == COCA && monVu100!=null && j<=num ) {
                 Moneda B;
                 B = monVu100.getMoneda();
@@ -121,27 +158,28 @@ class Expendedor {
                 B = monVu100.getMoneda();
                 aux = aux - B.getValor();
                 return B;
-            } else if (aux == 0 && cual == COCA && j<=num) {
+            }
+            else if (aux > 0 && cual == SNICKERS && monVu100!=null && j3<=num ) {
+                Moneda B;
+                B = monVu100.getMoneda();
+                aux = aux - B.getValor();
+                return B;
+            } else if (aux > 0 && cual == SUPER8 && monVu100!=null && j4<=num) {
+                Moneda B;
+                B = monVu100.getMoneda();
+                aux = aux - B.getValor();
+                return B;
+            }  else if (aux == 0 && cual == COCA && j<=num) {
                 return null;
             } else if (aux == 0 && cual == SPRITE && j2<=num) {
                 return null;
-            } else if (cual != COCA && cual != SPRITE) {
-                aux=0;
-                return monVu.getMoneda();
-            } else if (aux < 0) {
-                aux=0;
-                return monVu.getMoneda();
-            }
-            else if(j>num && aux>0){
-                aux=0;
-                return monVu.getMoneda();
-            }
-            else if(j2>num && aux>0){
-                aux=0;
-                return monVu.getMoneda();
+            } else if (aux == 0 && cual == SNICKERS && j3<=num) {
+                return null;
+            } else if (aux == 0 && cual == SUPER8 && j4<=num) {
+                return null;
             }
             else{
-                return null;
+                return monVu.getMoneda();
             }
         }
         else{
@@ -187,15 +225,23 @@ class CocaCola extends Bebida{
 class Deposito{
     private ArrayList<Bebida> listabebida;
     private ArrayList<Moneda> listamoneda;
+
+    private ArrayList<Dulce> listadulce;
+
     public Deposito(){
         listabebida= new ArrayList<Bebida>();
         listamoneda= new ArrayList<Moneda>();
+        listadulce= new ArrayList<Dulce>();
     }
     public void addBebida(Bebida x){
         listabebida.add(x);
     }
     public void addMoneda(Moneda y){
         listamoneda.add(y);
+    }
+
+    public void addDulce(Dulce z){
+        listadulce.add(z);
     }
     public void addFirstMoneda(Moneda y){
         listamoneda.add(0,y);
@@ -208,22 +254,18 @@ class Deposito{
             return null;
         }
     }
-
-    public int Msize() {
-        return listamoneda.size();
-    }
-
-    public Moneda getMoneda(){
-        if(listamoneda.size()!=0){
-            return listamoneda.remove(0);
+    public Dulce getDulce(){
+        if(listadulce.size()!=0){
+            return listadulce.remove(0);
         }
         else{
             return null;
         }
     }
-    public Moneda getLastMoneda(){
+
+    public Moneda getMoneda(){
         if(listamoneda.size()!=0){
-            return listamoneda.remove(listamoneda.size()-1);
+            return listamoneda.remove(0);
         }
         else{
             return null;
@@ -271,45 +313,51 @@ class Comprador{
     Moneda D;
     Moneda B;
     Bebida A;
+    Dulce C;
     private String sonido;
     private int vuelto;
-    int aux;
-    public Comprador(Moneda m, int cualBebida, Expendedor exp){
-        A= exp.comprarBebida(m,cualBebida);
-        B=m;
-        int suma=0;
+    public Comprador(Moneda m, int cual, Expendedor exp){
 
-        D=exp.getVuelto();
+        if(cual == exp.SPRITE || cual== exp.COCA) {
+            A = exp.comprarBebida(m, cual);
+        }
+        else if(cual == exp.SNICKERS || cual== exp.SUPER8){
+            C= exp.comprarDulce(m,cual);
+        }
 
-        if(D==m && D!=null){
-            vuelto=D.getValor();
-        }
-        else if(D==null){
-            vuelto=0;
-        }
-        else {
+        int suma = 0;
+
+        D = exp.getVuelto();
+
+        if (D == m && m != null) {
+            vuelto = D.getValor();
+        } else if (D == m && m==null) {
+            vuelto = 0;
+        } else {
             while (D != null && D != m) {
                 vuelto = D.getValor() + suma;
                 suma = vuelto;
                 D = exp.getVuelto();
             }
         }
-
-        if (cualBebida == exp.COCA && A!=null) {
-            sonido = "cocacola";
-        }
-        else if (cualBebida == exp.SPRITE && A!=null) {
-            sonido = "sprite";
-        }
-        else {
+        if (cual == exp.COCA && A != null) {
+            sonido = A.beber();
+        } else if (cual == exp.SPRITE && A != null) {
+            sonido = A.beber();
+        } else if (cual == exp.SNICKERS && C != null) {
+            sonido = C.comer();
+        } else if (cual == exp.SUPER8 && C != null) {
+            sonido = C.comer();
+        } else {
             sonido = null;
         }
+
     }
 
     public int cuantoVuelto(){
         return vuelto;
     }
-    public String queBebiste(){
+    public String queSacaste(){
         return sonido;
     }
 }
@@ -337,12 +385,12 @@ class Super8 extends Dulce {
     }
 }
 class Snickers extends Dulce {
-        public Snickers(int serie){
-            super(serie);
-        }
-
-        public String comer(){
-            String b = "num num";
-            return b;
-        }
+    public Snickers(int serie){
+        super(serie);
     }
+
+    public String comer(){
+        String b = "num num";
+        return b;
+    }
+}
