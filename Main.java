@@ -335,7 +335,6 @@ class Moneda100 extends Moneda{
 }
 class Comprador{
     Moneda D;
-    Moneda B;
     Bebida A;
     Dulce C;
     private String sonido;
