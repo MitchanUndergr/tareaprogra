@@ -138,11 +138,15 @@ class Expendedor {
             } else if (cual == SPRITE && sprite != null && aux >= 0) {
                 j2++;
                 return sprite.getBebida();
+            } else if(snickers==null){ //aqui nohayproductoexceptiom
+                return null;
+            } else if(super8==null){ //aqui nohayproductoexceptiom
+                return null;
             } else {
                 return null;
             }
         }
-        else{
+        else{ // esto es de pagoincorrectoexception porque aqui te devuelve botella null si es que metes moneda null
 
             return null;
         }
@@ -161,11 +165,15 @@ class Expendedor {
                 } else if (cual == SUPER8 && super8 != null && aux >= 0) {
                     j4++;
                     return super8.getDulce();
+                } else if(snickers==null){ //aqui nohayproductoexceptiom
+                    return null;
+                } else if(super8==null){ //aqui nohayproductoexceptiom
+                    return null;
                 } else {
                     return null;
                 }
             }
-            else{
+            else{ // esto es de pagoincorrectoexception porque aqui te devuelve dulce null si es que metes moneda null
                 return null;
             }
         }
@@ -201,8 +209,9 @@ class Expendedor {
                 return null;
             } else if (aux == 0 && cual == SUPER8 && j4<=num) {
                 return null;
-            }
-            else{
+            } else if(aux<0){ // aqui pago insuficienteexception
+                return monVu.getMoneda();
+            } else{
                 return monVu.getMoneda();
             }
         }
