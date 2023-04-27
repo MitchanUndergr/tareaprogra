@@ -3,33 +3,57 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        Expendedor exp = new Expendedor(2,500,200);
+        Expendedor exp = new Expendedor(2,600,300);
         Moneda m = null;
         Comprador c=null;
+        m = new Moneda1000();
+        c = new Comprador(m,exp.SPRITE,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda1000();
+        c = new Comprador(m,exp.SPRITE,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda1000();
+        c = new Comprador(m,exp.SPRITE,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda1000();
+        c = new Comprador(m,exp.COCA,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda1000();
+        c = new Comprador(m,exp.COCA,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
         m = new Moneda500();
-        c = new Comprador(m,600,exp);
-        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
-        /*m = new Moneda1000();
-        c = new Comprador(m,Expendedor.SPRITE,exp);
+        c = new Comprador(m,exp.COCA,exp);
         System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
         m = new Moneda1000();
-        c = new Comprador(m,Expendedor.SPRITE,exp);
-        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
-        m = new Moneda1000();
-        c = new Comprador(m,Expendedor.SPRITE,exp);
-        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
-        m = new Moneda1000();
-        c = new Comprador(m,Expendedor.COCA,exp);
+        c = new Comprador(m,exp.COCA,exp);
         System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
         m = new Moneda500();
-        c = new Comprador(m,Expendedor.SPRITE,exp);
+        c = new Comprador(m,exp.SNICKERS,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda100();
+        c = new Comprador(m,exp.SNICKERS,exp);
         System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
         m = new Moneda1000();
-        c = new Comprador(m,Expendedor.COCA,exp);
+        c = new Comprador(m,exp.SNICKERS,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = null;
+        c = new Comprador(m,exp.SNICKERS,exp);
         System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
         m = new Moneda1000();
-        c = new Comprador(m,Expendedor.COCA,exp);
-        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());*/
+        c = new Comprador(m,exp.SNICKERS,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda100();
+        c = new Comprador(m,exp.SUPER8,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda1000();
+        c = new Comprador(m,exp.SUPER8,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda500();
+        c = new Comprador(m,exp.SUPER8,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
+        m = new Moneda500();
+        c = new Comprador(m,exp.SUPER8,exp);
+        System.out.println(c.queSacaste()+", "+c.cuantoVuelto());
     }
 }
 
@@ -103,15 +127,15 @@ class Expendedor {
 
     public Bebida comprarBebida(Moneda m, int cual) {
         this.cual=cual;
-        if(m!=null ) {
+        if(m!=null) {
             aux = m.getValor() - precioBebidas;
             monVu.addFirstMoneda(m);
             B = m;
 
-            if (cual == COCA && coca != null && aux >= 0) {// && k!=num && aux>0) {
+            if (cual == COCA && coca != null && aux >= 0) {
                j++;
                return coca.getBebida();
-            } else if (cual == SPRITE && sprite != null && aux >= 0) { //&& k!=num && aux>0){
+            } else if (cual == SPRITE && sprite != null && aux >= 0) {
                 j2++;
                 return sprite.getBebida();
             } else {
@@ -323,6 +347,9 @@ class Comprador{
         }
         else if(cual == exp.SNICKERS || cual== exp.SUPER8){
             C= exp.comprarDulce(m,cual);
+        }
+        else{
+            A= exp.comprarBebida(m,cual);
         }
 
         int suma = 0;
