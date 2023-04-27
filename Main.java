@@ -138,9 +138,9 @@ class Expendedor {
             } else if (cual == SPRITE && sprite != null && aux >= 0) {
                 j2++;
                 return sprite.getBebida();
-            } else if(snickers==null){ //aqui nohayproductoexceptiom
+            } else if(coca==null){ //aqui nohayproductoexceptiom porque el deposito coca esta vacio
                 return null;
-            } else if(super8==null){ //aqui nohayproductoexceptiom
+            } else if(sprite==null){ //aqui nohayproductoexceptiom porque el deposito sprite esta vacio
                 return null;
             } else {
                 return null;
@@ -209,7 +209,7 @@ class Expendedor {
                 return null;
             } else if (aux == 0 && cual == SUPER8 && j4<=num) {
                 return null;
-            } else if(aux<0){ // aqui pago insuficienteexception
+            } else if(aux<0){ // aqui pago insuficienteexception porque valor de moneda menos precio de alimento es menor a 0
                 return monVu.getMoneda();
             } else{
                 return monVu.getMoneda();
