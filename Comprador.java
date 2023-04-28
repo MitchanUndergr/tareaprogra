@@ -74,15 +74,3 @@ class Comprador{
         return sonido;
     }
 }
-abstract class Dulce{
-    private int serie;
-
-    public Dulce(int serie){
-        super();
-        this.serie=serie;
-    }
-    public int getSerie(){
-        return serie;
-    }
-    public abstract String comer();
-}
