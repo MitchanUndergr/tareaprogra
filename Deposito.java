@@ -32,6 +32,14 @@ class Deposito{
             return null;
         }
     }
+
+    public int MsizeBebida(){
+        return listabebida.size();
+    }
+
+    public int MsizeDulce(){
+        return listadulce.size();
+    }
     public Dulce getDulce(){
         if(listadulce.size()!=0){
             return listadulce.remove(0);
