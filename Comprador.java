@@ -1,4 +1,7 @@
 class Comprador{
+
+    // las excepciones se imprimen por conveniencia para no cortar la compilacion del main
+    // se deja comentado en cada catch la opcion runtimeexception
     Moneda D;
     Bebida A;
     Dulce C;
@@ -10,25 +13,37 @@ class Comprador{
             try {
                 A = exp.comprarBebida(m, cual);
             } catch (PagoIncorrectoException e) {
-                throw new RuntimeException(e);
+                System.out.println(e);
+                //throw new RuntimeException(e);
+            } catch (NoHayProductoException e) {
+                System.out.println(e);
+                //throw new RuntimeException(e);
             }
         }
+
         else if(cual == exp.SNICKERS || cual== exp.SUPER8){
+
             try {
-                try {
-                    C= exp.comprarDulce(m,cual);
-                } catch (NoHayProductoException e) {
-                    throw new RuntimeException(e);
-                }
+                C= exp.comprarDulce(m,cual);
+            } catch (NoHayProductoException e) {
+                System.out.println(e);
+                //throw new RuntimeException(e);
             } catch (PagoIncorrectoException e) {
-                throw new RuntimeException(e);
+                System.out.println(e);
+                //throw new RuntimeException(e);
             }
+
         }
+
         else{
             try {
                 A= exp.comprarBebida(m,cual);
             } catch (PagoIncorrectoException e) {
-                throw new RuntimeException(e);
+                System.out.println(e);
+                //throw new RuntimeException(e);
+            } catch (NoHayProductoException e) {
+                System.out.println(e);
+                //throw new RuntimeException(e);
             }
         }
 
@@ -36,7 +51,11 @@ class Comprador{
 
         try{
             D = exp.getVuelto();
-        }catch (PagoInsuficienteException ex){}
+        }catch (PagoInsuficienteException ex){
+            D=ex.pagoInsuficiente();
+            //throw new RuntimeException(ex);
+            System.out.println("Error!!! Pago insuficiente");
+        }
 
         if (D == m && m != null) {
             vuelto = D.getValor();
@@ -49,7 +68,8 @@ class Comprador{
                 try {
                     D = exp.getVuelto();
                 } catch (PagoInsuficienteException e) {
-                    throw new RuntimeException(e);
+                    System.out.println(e);
+                   // throw new RuntimeException(e);
                 }
             }
         }
